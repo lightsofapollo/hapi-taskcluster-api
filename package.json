@@ -19,5 +19,22 @@
   "bugs": {
     "url": "https://github.com/lightsofapollo/hapi-taskcluster-api/issues"
   },
-  "homepage": "https://github.com/lightsofapollo/hapi-taskcluster-api"
+  "homepage": "https://github.com/lightsofapollo/hapi-taskcluster-api",
+  "devDependencies": {
+    "6to5": "^2.5.0",
+    "denodeify": "^1.2.0",
+    "hapi": "^8.0.0",
+    "joi": "^5.1.0",
+    "mocha": "^2.1.0",
+    "taskcluster-base": "^0.6.3",
+    "taskcluster-client": "^0.18.0"
+  },
+  "dependencies": {
+    "joi": "^5.1.0",
+    "joi-to-json-schema": "^1.0.2",
+    "promise": "^6.0.1",
+    "superagent": "^0.21.0",
+    "superagent-promise": "^0.2.0",
+    "taskcluster-client": "^0.18.0"
+  }
 }
