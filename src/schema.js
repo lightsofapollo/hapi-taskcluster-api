@@ -24,7 +24,8 @@ export default function schema(server) {
   schema.entries = [];
 
   serverDetails.table.forEach((route) => {
-    let taskclusterParams = route.settings.plugins.taskcluster || {} ;
+    let settings = route.settings;
+    let taskclusterParams = settings.plugins.taskcluster || {} ;
 
     // Only generate definitions for things with names...
     if (!taskclusterParams.name) return;
@@ -41,8 +42,8 @@ export default function schema(server) {
       method: route.method,
       route: routeName,
       args: params,
-      description: (route.settings.description || '').trim(),
-      title: taskclusterParams.title || '',
+      title: (settings.description || '').trim(),
+      description: (settings.notes || '').trim(),
       name: taskclusterParams.name || ''
     };
 

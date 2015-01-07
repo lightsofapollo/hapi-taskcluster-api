@@ -19,10 +19,10 @@ suite('schema', function() {
         reply({ info: 'info' });
       },
       config: {
-        description: 'info',
+        description: 'Info',
+        notes: `some details about info`,
         plugins: {
           taskcluster: {
-            title: 'Info',
             name: 'getInfo'
           }
         },
@@ -45,10 +45,10 @@ suite('schema', function() {
         });
       },
       config: {
-        description: 'api thing',
+        description: 'Title',
+        notes: 'api thing',
         plugins: {
           taskcluster: {
-            title: 'Title',
             name: 'doApiVersion',
             scopes: ['woot']
           }
@@ -79,7 +79,8 @@ suite('schema', function() {
         reply({ woot: 'yay' });
       },
       config: {
-        description: `
+        description: 'Post me endpoint',
+        notes: `
           The postme endpoint does things
         `,
         response: {
@@ -90,7 +91,6 @@ suite('schema', function() {
         validate: {},
         plugins: {
           taskcluster: {
-            title: 'Post me endpoint',
             name: 'postMe',
             scopes: [['test:postme', 'test:post']]
           }
