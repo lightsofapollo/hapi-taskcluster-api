@@ -8,7 +8,7 @@ import joiToJsonSchema from 'joi-to-json-schema';
 // See: https://github.com/taskcluster/taskcluster-base/blob/master/schemas/api-reference.json
 export default function schema(server) {
   let schema = { version: '0.2.0' };
-  let settings = server.settings.app;
+  let settings = server.settings.app || {};
   let serverDetails = server.table();
 
 
@@ -21,15 +21,20 @@ export default function schema(server) {
   schema.description = settings.description || '';
   schema.baseUrl = settings.baseUrl || serverDetails.info.uri;
 
-  schema.entries = serverDetails.table.map((route) => {
+  schema.entries = [];
+
+  serverDetails.table.forEach((route) => {
+    let taskclusterParams = route.settings.plugins.taskcluster || {} ;
+
+    // Only generate definitions for things with names...
+    if (!taskclusterParams.name) return;
+
     let params = [];
     let routeName = route.fingerprint;
     route.params.forEach((value) => {
       routeName = routeName.replace('?', `<${value}>`);
       params.push(value);
     });
-
-    let taskclusterParams = route.settings.plugins.taskcluster || {} ;
 
     let entry = {
       type: 'function',
@@ -53,7 +58,7 @@ export default function schema(server) {
       entry.scopes = taskclusterParams.scopes;
     }
 
-    return entry;
+    return schema.entries.push(entry);
   });
 
   return schema;

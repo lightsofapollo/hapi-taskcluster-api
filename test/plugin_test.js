@@ -92,6 +92,7 @@ suite('plugin', function() {
         auth: 'taskcluster',
         plugins: {
           taskcluster: {
+            name: 'do',
             scopes: [
               ['one:scope', 'one:valid'],
               'alternate'
@@ -134,6 +135,14 @@ suite('plugin', function() {
     let substar = await req('substar', 'substar');
     assert.ok(substar.ok);
     assert.deepEqual(substar.body, { woot: true });
+  });
+
+  test('GET /reference', async function() {
+    let reference = await request.get(`${server.info.uri}/reference`).end();
+    console.log(reference.body);
+    assert.ok(reference.body.entries.length === 1);
+    let entry = reference.body.entries[0];
+    assert.equal(entry.name, 'do');
   });
 
 });

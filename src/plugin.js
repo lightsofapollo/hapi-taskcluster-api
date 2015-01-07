@@ -3,6 +3,7 @@ import LRU from 'lru-cache';
 import Client from './client';
 import Boom from 'boom';
 
+import toSchema from './schema';
 import hawk from 'hawk';
 import superagent from 'superagent';
 import addHawk from 'superagent-hawk';
@@ -95,6 +96,15 @@ export function register(server, opts = {}, next) {
     }
 
     reply.continue();
+  });
+
+  // Register the reference endpoint.
+  server.route({
+    method: 'get',
+    path: '/reference',
+    handler: (request, reply) => {
+      reply(toSchema(server));
+    }
   });
 
   // Register the hawk authentication plugin...

@@ -4,7 +4,7 @@
   "description": "Hapi + Taskcluster Auth/Schema/HTTP Tools",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/lightsofapollo/hapi-taskcluster-api/issues"
   },
-  "homepage": "https://github.com/lightsofapollo/hapi-taskcluster-api",
+  "homepage": "https://github.com/blightsofapollo/hapi-taskcluster-api",
   "devDependencies": {
     "6to5": "^2.5.0",
     "denodeify": "^1.2.0",
