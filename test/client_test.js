@@ -2,7 +2,6 @@ import Client from '../src/client';
 import assert from 'assert';
 
 suite('client', function() {
-
   let createClient = (scopes=['*'], expires=new Date(2200, 0)) => {
     return new Client({
       clientId: 'id',
