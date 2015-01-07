@@ -1,10 +1,11 @@
 {
   "name": "hapi-taskcluster-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hapi + Taskcluster Auth/Schema/HTTP Tools",
-  "main": "index.js",
+  "main": "build/plugin.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "prepublish": "6to5 -s -e src --out-dir build"
   },
   "repository": {
     "type": "git",

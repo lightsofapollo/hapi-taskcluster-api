@@ -23,7 +23,7 @@ export function register(server, opts = {}, next) {
     credentials: Joi.object().keys({
       clientId: Joi.string().required(),
       accessToken: Joi.string().required()
-    }),
+    }).required(),
     authBaseUrl: Joi.string().
       default('https://auth.taskcluster.net/v1').
       description('url for authentication server')
